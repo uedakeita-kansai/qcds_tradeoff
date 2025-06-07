@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCDSトレードオフ・シミュレーター</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for lock icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>QCDSトレードオフ・シミュレーター</h1>
+            <p>プロジェクトや計画のQCDS（品質・コスト・納期・スコープ）のバランスを直感的に探るための思考支援ツールです。</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Left Column: Control Panel -->
+            <div id="control-panel" class="control-panel card">
+                <div class="control-group">
+                    <label for="preset-selector">プリセットモデル選択:</label>
+                    <select id="preset-selector">
+                        <option value="softwareDevelopment">① ソフトウェア開発</option>
+                        <option value="eventPlanning">② イベント企画</option>
+                        <option value="materialCreation">③ 資料作成</option>
+                        <option value="travelPlanning">④ 旅行計画</option>
+                        <option value="examStudy">⑤ 資格試験の勉強</option>
+                        <option value="creativeWork">⑥ 創作活動</option>
+                    </select>
+                </div>
+
+                <!-- Sliders -->
+                <div class="slider-group" data-param="quality">
+                    <label for="quality-slider">Q (Quality) - 品質</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="quality-slider" min="0" max="100" step="1">
+                        <span id="quality-value" class="slider-value">25</span>
+                        <button id="quality-lock" class="lock-button"><i class="fas fa-lock-open"></i></button>
+                    </div>
+                </div>
+
+                <div class="slider-group" data-param="cost">
+                    <label for="cost-slider">C (Cost) - コスト</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="cost-slider" min="0" max="100" step="1">
+                        <span id="cost-value" class="slider-value">25</span>
+                        <button id="cost-lock" class="lock-button"><i class="fas fa-lock-open"></i></button>
+                    </div>
+                </div>
+
+                <div class="slider-group" data-param="delivery">
+                    <label for="delivery-slider">D (Delivery) - 納期</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="delivery-slider" min="0" max="100" step="1">
+                        <span id="delivery-value" class="slider-value">25</span>
+                        <button id="delivery-lock" class="lock-button"><i class="fas fa-lock-open"></i></button>
+                    </div>
+                </div>
+
+                <div class="slider-group" data-param="scope">
+                    <label for="scope-slider">S (Scope) - スコープ</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="scope-slider" min="0" max="100" step="1">
+                        <span id="scope-value" class="slider-value">25</span>
+                        <button id="scope-lock" class="lock-button"><i class="fas fa-lock-open"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Analysis Panel -->
+            <div id="analysis-panel" class="analysis-panel card">
+                <div class="analysis-content">
+                    <h2 id="score-display">総合評価: C (50点)</h2>
+                    <p id="summary-advice">バランスの取れた標準的な状態です。</p>
+                    
+                    <div class="chart-container">
+                        <canvas id="radar-chart" width="300" height="300"></canvas>
+                    </div>
+
+                    <h3>詳細分析</h3>
+                    <div class="analysis-details">
+                        <h4>パターン分析</h4>
+                        <p id="pattern-analysis">各要素が均等に配分されています。</p>
+                        <h4>プリセット連動助言</h4>
+                        <p id="preset-advice">[ソフトウェア開発モデル] バランス型。機能、品質、予算、スケジュールのいずれかを優先して、プロジェクトの方向性を定めましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <button id="export-button" class="action-button">
+                <i class="fas fa-camera"></i> 結果を画像で保存
+            </button>
+        </footer>
+    </div>
+
+    <!-- html2canvas for image export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Main application logic -->
+    <script src="script.js"></script>
+</body>
+</html>
